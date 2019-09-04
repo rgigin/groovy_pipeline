@@ -1,2 +1,2 @@
-# jenkins_pipeline
+# pipeline
 parallel scripted pipeline using groovy 
