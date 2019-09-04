@@ -1,0 +1,34 @@
+pipeline {
+  agent any
+  stages {
+    stage("Test & Deploy") {
+      steps {
+        script {
+          parallel linux: {
+            node("linux_compile") {
+              echo "Compile phase for linux job"
+            }
+            node("linux_test") {
+              echo "testing phase for linux job"
+            }
+	    node("linux_deploy") {
+              echo "deployment phase for linux job"
+            }
+	    		
+          },
+          windows: {
+            node("windows_compile") {
+              echo "Compile phase for windows job"
+            }
+            node("windows_test") {
+              echo "testing phase for windows job"
+            }
+	    node("windows_deploy") {
+              echo "deployment phase for windows job"
+            }
+          }
+        }
+      }
+    }
+  }
+}
